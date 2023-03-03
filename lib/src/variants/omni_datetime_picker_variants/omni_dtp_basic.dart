@@ -37,66 +37,69 @@ class OmniDtpBasic extends StatelessWidget {
     DateTime selectedDateTime = DateTime.now();
 
     return SingleChildScrollView(
-      child: ConstrainedBox(
-        constraints: constraints ??
-            const BoxConstraints(
-              maxWidth: 350,
-              maxHeight: 650,
-            ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Calendar(
-              initialDate: initialDate,
-              firstDate: firstDate,
-              lastDate: lastDate,
-              onDateChanged: (value) {
-                DateTime tempDateTime = DateTime(
-                  value.year,
-                  value.month,
-                  value.day,
-                  selectedDateTime.hour,
-                  selectedDateTime.minute,
-                  isShowSeconds ?? false ? selectedDateTime.second : 0,
-                );
-
-                selectedDateTime = tempDateTime;
-              },
-              selectableDayPredicate: selectableDayPredicate,
-            ),
-            if (type == OmniDateTimePickerType.dateAndTime)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 24.0),
-                child: TimePickerSpinner(
-                  amText: localizations.anteMeridiemAbbreviation,
-                  pmText: localizations.postMeridiemAbbreviation,
-                  isShowSeconds: isShowSeconds ?? false,
-                  is24HourMode: is24HourMode ?? false,
-                  minutesInterval: minutesInterval ?? 1,
-                  secondsInterval: secondsInterval ?? 1,
-                  isForce2Digits: false,
-                  onTimeChange: (value) {
-                    DateTime tempDateTime = DateTime(
-                      selectedDateTime.year,
-                      selectedDateTime.month,
-                      selectedDateTime.day,
-                      value.hour,
-                      value.minute,
-                      isShowSeconds ?? false ? value.second : 0,
-                    );
-
-                    selectedDateTime = tempDateTime;
-                  },
-                ),
-              ),
-            ButtonRow(onSavePressed: () {
-              Navigator.pop<DateTime>(
-                context,
-                selectedDateTime,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Calendar(
+            initialDate: initialDate,
+            firstDate: firstDate,
+            lastDate: lastDate,
+            onDateChanged: (value) {
+              DateTime tempDateTime = DateTime(
+                value.year,
+                value.month,
+                value.day,
+                selectedDateTime.hour,
+                selectedDateTime.minute,
+                isShowSeconds ?? false ? selectedDateTime.second : 0,
               );
-            }),
-          ],
-        ),
+
+              selectedDateTime = tempDateTime;
+            },
+            selectableDayPredicate: selectableDayPredicate,
+          ),
+          if (type == OmniDateTimePickerType.dateAndTime)
+            Padding(
+                padding: const EdgeInsets.only(bottom: 24.0, left: 16.0, right: 16.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.tertiaryContainer,
+                      width: 1.0,
+                      style: BorderStyle.solid,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: TimePickerSpinner(
+                    amText: localizations.anteMeridiemAbbreviation,
+                    pmText: localizations.postMeridiemAbbreviation,
+                    isShowSeconds: isShowSeconds ?? false,
+                    is24HourMode: is24HourMode ?? false,
+                    minutesInterval: minutesInterval ?? 1,
+                    secondsInterval: secondsInterval ?? 1,
+                    isForce2Digits: true,
+                    onTimeChange: (value) {
+                      DateTime tempDateTime = DateTime(
+                        selectedDateTime.year,
+                        selectedDateTime.month,
+                        selectedDateTime.day,
+                        value.hour,
+                        value.minute,
+                        isShowSeconds ?? false ? value.second : 0,
+                      );
+
+                      selectedDateTime = tempDateTime;
+                    },
+                  ),
+                )
+            ),
+          ButtonRow(onSavePressed: () {
+            Navigator.pop<DateTime>(
+              context,
+              selectedDateTime,
+            );
+          }),
+        ],
       ),
     );
   }
