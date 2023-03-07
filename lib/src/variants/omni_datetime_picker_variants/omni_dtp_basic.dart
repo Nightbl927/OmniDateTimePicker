@@ -34,8 +34,9 @@ class OmniDtpBasic extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizations = MaterialLocalizations.of(context);
 
-    DateTime selectedDateTime = this.initialDate;
-
+    DateTime selectedDateTime = this.initialDate?? DateTime.now();
+print('xxx');
+print(selectedDateTime);
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -78,6 +79,7 @@ class OmniDtpBasic extends StatelessWidget {
                     minutesInterval: minutesInterval ?? 1,
                     secondsInterval: secondsInterval ?? 1,
                     isForce2Digits: true,
+                    time: selectedDateTime,
                     onTimeChange: (value) {
                       DateTime tempDateTime = DateTime(
                         selectedDateTime.year,
