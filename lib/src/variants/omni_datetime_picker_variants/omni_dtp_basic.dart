@@ -35,8 +35,7 @@ class OmniDtpBasic extends StatelessWidget {
     final localizations = MaterialLocalizations.of(context);
 
     DateTime selectedDateTime = this.initialDate?? DateTime.now();
-print('xxx');
-print(selectedDateTime);
+
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
