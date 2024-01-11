@@ -10,35 +10,38 @@ class ButtonRow extends StatelessWidget {
     final localizations = MaterialLocalizations.of(context);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 8.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.end,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Expanded(
-            child: TextButton(
-              onPressed: () {
-                Navigator.of(context).pop<DateTime>();
-              },
-              child: Text(
-                localizations.cancelButtonLabel,
-                style: TextStyle(color: Colors.red),
-              ),
+          TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.grey,
+              padding: const EdgeInsets.all(0),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop<DateTime>();
+            },
+            child: Text(
+              localizations.cancelButtonLabel,
+              style: TextStyle(color: Colors.white),
             ),
           ),
-          const SizedBox(
-            height: 20,
-            child: VerticalDivider(),
-          ),
-          Expanded(
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8.0, 0.0, 12.0, 0.0),
             child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.green,
+                padding: const EdgeInsets.all(0),
+              ),
               onPressed: onSavePressed,
               child: Text(
                 localizations.saveButtonLabel,
-                style: TextStyle(color: Colors.green),
+                style: TextStyle(color: Colors.white),
               ),
             ),
-          ),
+          )
         ],
       ),
     );
