@@ -60,7 +60,7 @@ class OmniDtpBasic extends StatelessWidget {
           ),
           if (type == OmniDateTimePickerType.dateAndTime)
             Padding(
-                padding: const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0),
+                padding: const EdgeInsets.only(bottom: 8.0, left: 16.0, right: 16.0),
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
