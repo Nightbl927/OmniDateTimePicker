@@ -32,6 +32,7 @@ class OmniDateTimePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      surfaceTintColor: Colors.white,
       alignment: Alignment.center,
       shape: Theme.of(context).useMaterial3
           ? null
